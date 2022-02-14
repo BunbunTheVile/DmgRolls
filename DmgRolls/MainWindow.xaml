@@ -168,7 +168,7 @@
                            FontWeight="Bold"/>
                 <StackPanel x:Name="BoundsInnerPanel"
                             Orientation="Horizontal">
-                    <TextBlock Text="Upper:"/>
+                    <TextBlock Text="Lower:"/>
                     <TextBox Text="3"
                              TextAlignment="Center"
                              Width="40"
@@ -176,7 +176,7 @@
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
                              Foreground="#FF2878FF"/>
-                    <TextBlock Text="Lower:"
+                    <TextBlock Text="Upper:"
                                Margin="15 0 5 0"/>
                     <TextBox Text="18"
                              TextAlignment="Center"

@@ -15,4 +15,8 @@
     <Resource Include="icon.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
