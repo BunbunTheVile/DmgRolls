@@ -30,17 +30,11 @@ namespace DmgRolls
         {
             InitializeComponent();
 
-            int[] dice = new int[] { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 };
-            var x = new ExactProbabilityCalculator(dice, 0);
-            string results = "";
-            for (int i = 0; i < x.probabilities.Length; i++)
-            {
-                results += $"{i}\t{x.frequencies[i]}\t{x.probabilities[i] * 100:N3}%\n";
-            }
-            //MessageBox.Show(results);
+            int[] dice = new int[] { 6, 6, 6, 6, 6, 6};
+            var x = new ApproximateProbabilityCalculator(dice, 0);
 
-            double prob = x.getProbability(25, 45);
-            MessageBox.Show(prob.ToString());
+            string result = $"{x.mean}\t{x.standardDeviation}\n{x.getProbability(21, 36)}";
+            MessageBox.Show(result);
         }
     }
 }

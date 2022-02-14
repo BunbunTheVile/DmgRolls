@@ -25,6 +25,8 @@ namespace DmgRolls.Models
             }
             useApproximation = calculationWeight > 70;
 
+            // TODO: choose prob calculator
+            // TODO: method: getProbability
             // initialize probabilityCalculator depending on the calculationWeight
         }
     }
