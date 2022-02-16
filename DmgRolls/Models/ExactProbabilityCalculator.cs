@@ -5,6 +5,9 @@
         public int[] dice;
         public int staticModifier;
 
+        public int maxRoll;
+        public int minRoll;
+
         public int[] frequencies;          // absolute frequencies of a every dice roll total
         public double[] probabilities;     // relative frequencies of every dice roll total
         public int possibilities;          // the total amount of possible dice rolls
@@ -14,7 +17,8 @@
             this.dice = dice;
             this.staticModifier = staticModifier;
 
-            int maxRoll = staticModifier;
+            minRoll = dice.Length + staticModifier;
+            maxRoll = staticModifier;
             possibilities = 1;
             foreach (int die in dice)
             {
@@ -64,8 +68,15 @@
             }
         }
 
-        public double getProbability(int lower, int upper)
+        public double GetProbability(int lower, int upper)
         {
+            if (lower > upper) return 0;
+
+            lower = lower < minRoll ? minRoll : lower;
+            lower = lower > maxRoll ? maxRoll : lower;
+            upper = upper < minRoll ? minRoll : upper;
+            upper = upper > maxRoll ? maxRoll : upper;
+
             double probability = 0;
             for (int i = lower; i <= upper; i++)
             {

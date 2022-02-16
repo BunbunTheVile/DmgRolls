@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DmgRolls.Models
+﻿namespace DmgRolls.Models
 {
     public class DiceProbabilityModel
     {
@@ -19,15 +13,26 @@ namespace DmgRolls.Models
             this.staticModifier = staticModifier;
 
             int calculationWeight = 0;
-            foreach (int die in dice)
+            foreach (int die in this.dice)
             {
                 calculationWeight += die;
             }
-            useApproximation = calculationWeight > 70;
+            useApproximation = calculationWeight > 70;        
 
-            // TODO: choose prob calculator
-            // TODO: method: getProbability
-            // initialize probabilityCalculator depending on the calculationWeight
+            if (useApproximation)
+            {
+                this.probabilityCalculator = new ApproximateProbabilityCalculator(this.dice, this.staticModifier);
+            }
+            else
+            {
+                this.probabilityCalculator = new ExactProbabilityCalculator(this.dice, this.staticModifier);
+            }
+        }
+
+        public double GetProbability(int lower, int upper)
+        {
+            double probability = this.probabilityCalculator.GetProbability(lower, upper);
+            return probability;
         }
     }
 }

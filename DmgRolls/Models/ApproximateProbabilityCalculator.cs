@@ -41,7 +41,7 @@ namespace DmgRolls.Models
             return (die * die - 1) / (double)12;
         }
 
-        public double getProbability(int lower, int upper)
+        public double GetProbability(int lower, int upper)
         {
             double upperProbability = normalDistribution.CumulativeDistribution((double)upper + 0.5);
             double lowerProbability = normalDistribution.CumulativeDistribution((double)lower - 0.5);

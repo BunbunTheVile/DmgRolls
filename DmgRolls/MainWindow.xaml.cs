@@ -31,10 +31,11 @@ namespace DmgRolls
             InitializeComponent();
 
             int[] dice = new int[] { 6, 6, 6, 6, 6, 6};
-            var x = new ApproximateProbabilityCalculator(dice, 0);
+            var x = new DiceProbabilityModel(dice, 5);
 
-            string result = $"{x.mean}\t{x.standardDeviation}\n{x.getProbability(21, 36)}";
-            MessageBox.Show(result);
+            var result = $"{x.GetProbability(30, 30):N3}";
+
+            MessageBox.Show(result.ToString());
         }
     }
 }

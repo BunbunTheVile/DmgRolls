@@ -8,6 +8,6 @@ namespace DmgRolls.Models
 {
     public interface IProbabilityCalculator
     {
-        double getProbability(int lower, int upper);
+        double GetProbability(int lower, int upper);
     }
 }
