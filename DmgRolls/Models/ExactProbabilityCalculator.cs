@@ -34,7 +34,7 @@ namespace DmgRolls.Models
             frequencies = new int[maxRoll + 1];
             probabilities = new double[maxRoll + 1];
 
-            Mean = 0.0;
+            Mean = (double)staticModifier;
             Variance = 0.0;
             foreach (int die in dice)
             {
@@ -42,9 +42,11 @@ namespace DmgRolls.Models
                 Variance += IProbabilityCalculator.GetVariance(die);
             }
             StandardDeviation = Math.Sqrt(Variance);
-
-            this.initializeFrequencies(currentSum: staticModifier);
-            this.initializeProbabilities();
+            if (dice.Length > 0)
+            {
+                this.initializeFrequencies(currentSum: staticModifier);
+                this.initializeProbabilities();
+            }
         }
 
         public void initializeFrequencies(int depth = 0, int currentSum = 0)
@@ -85,6 +87,7 @@ namespace DmgRolls.Models
 
         public double GetProbability(int lower, int upper)
         {
+            if (!(dice.Length > 0)) return 1;
             if (lower > upper) return 0;
 
             lower = lower < minRoll ? minRoll : lower;

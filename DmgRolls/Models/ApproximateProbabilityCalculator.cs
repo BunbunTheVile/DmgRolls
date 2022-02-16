@@ -19,7 +19,7 @@ namespace DmgRolls.Models
             this.dice = dice;
             this.staticModifier = staticModifier;
             
-            Mean = 0.0;
+            Mean = (double)staticModifier;
             Variance = 0.0;
             foreach (int die in dice)
             {

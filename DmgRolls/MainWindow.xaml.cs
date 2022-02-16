@@ -11,6 +11,7 @@ using System.Windows.Input;
  * Well, I'll use it as one, for what it's worth.
  * 
  * TODO:
+ * -add dice rolling functionality that doesn't conflict with calculate
  */
 
 namespace DmgRolls
