@@ -4,8 +4,11 @@
     {
         private int[] dice;
         private int staticModifier;
-        private bool useApproximation;
         private IProbabilityCalculator probabilityCalculator;
+
+        public bool UseApproximation { get; }
+        public double Mean { get; }
+        public double StandardDeviation { get; }
 
         public DiceProbabilityModel(int[] dice, int staticModifier)
         {
@@ -17,9 +20,9 @@
             {
                 calculationWeight += die;
             }
-            useApproximation = calculationWeight > 70;        
+            UseApproximation = calculationWeight > 70;        
 
-            if (useApproximation)
+            if (UseApproximation)
             {
                 this.probabilityCalculator = new ApproximateProbabilityCalculator(this.dice, this.staticModifier);
             }
@@ -27,6 +30,9 @@
             {
                 this.probabilityCalculator = new ExactProbabilityCalculator(this.dice, this.staticModifier);
             }
+
+            this.Mean = probabilityCalculator.Mean;
+            this.StandardDeviation = probabilityCalculator.StandardDeviation;
         }
 
         public double GetProbability(int lower, int upper)

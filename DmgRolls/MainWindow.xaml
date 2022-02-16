@@ -204,7 +204,8 @@
             <StackPanel x:Name="ProbAndCalcPanel"
                         HorizontalAlignment="Center"
                         Margin="5">
-                <TextBlock Text="Probability: ..."/>
+                <TextBlock x:Name="ProbabilityTextBlock"
+                           Text="Probability: ..."/>
                 <Button x:Name="CalculateButton"
                         Content="Calculate"
                         BorderThickness="4"
@@ -212,7 +213,8 @@
                         Width="150"
                         BorderBrush="#FF142878"
                         Background="#FF0A1428"
-                        Foreground="#FF2878FF"/>
+                        Foreground="#FF2878FF"
+                        Click="CalculateButton_Click"/>
             </StackPanel>
         </Border>
     </Grid>

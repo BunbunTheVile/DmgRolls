@@ -1,5 +1,5 @@
 ﻿using DmgRolls.Helpers;
-using System;
+using DmgRolls.Models;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,10 +9,8 @@ using System.Windows.Controls;
  * Well, I'll use it as one, for what it's worth.
  * 
  * TODO:
- *  -lostfocus modifier event
- *  -lower bound events
- *  -upper bound events
- *  -calculate events
+ *  -calculate on Enter
+ *  -update mu and sigma with other field adjustments
  */
 
 namespace DmgRolls
@@ -208,6 +206,31 @@ namespace DmgRolls
         public void diceField_LostFocus(object sender, RoutedEventArgs e)
         {
             AdjustAndReadInputFields();
+        }
+
+        private void CalculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            //adjust and read all input; initialize probability model; display calculated values
+            AdjustAndReadInputFields();
+
+            var dice = new List<int>();
+            foreach(DiceRow row in diceRows)
+            {
+                for (int i = 0; i < int.Parse(row.diceCountBox.Text); i++)
+                {
+                    dice.Add(int.Parse(row.diceTypeBox.Text));
+                }
+            }
+
+            var calculator = new DiceProbabilityModel(dice.ToArray(), this.staticModifier);
+            string approximation = calculator.UseApproximation ? "~" : "";
+            double mean = calculator.Mean;
+            double standardDeviation = calculator.StandardDeviation;
+            double probability = calculator.GetProbability(this.lowerBound, this.upperBound);
+
+            MuTextBlock.Text = $"μ: {mean:N1}";
+            SigmaTextBlock.Text = $"σ: {standardDeviation:N3}";
+            ProbabilityTextBlock.Text = $"Probability: {approximation}{probability * 100:N1}%";
         }
     }
 }

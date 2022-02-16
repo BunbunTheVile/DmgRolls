@@ -1,4 +1,6 @@
-﻿namespace DmgRolls.Models
+﻿using System;
+
+namespace DmgRolls.Models
 {
     public class ExactProbabilityCalculator : IProbabilityCalculator
     {
@@ -7,6 +9,10 @@
 
         public int maxRoll;
         public int minRoll;
+
+        public double Mean { get; }
+        public double Variance { get; }
+        public double StandardDeviation { get; }
 
         public int[] frequencies;          // absolute frequencies of a every dice roll total
         public double[] probabilities;     // relative frequencies of every dice roll total
@@ -27,6 +33,15 @@
             }
             frequencies = new int[maxRoll + 1];
             probabilities = new double[maxRoll + 1];
+
+            Mean = 0.0;
+            Variance = 0.0;
+            foreach (int die in dice)
+            {
+                Mean += IProbabilityCalculator.GetMean(die);
+                Variance += IProbabilityCalculator.GetVariance(die);
+            }
+            StandardDeviation = Math.Sqrt(Variance);
 
             this.initializeFrequencies(currentSum: staticModifier);
             this.initializeProbabilities();
