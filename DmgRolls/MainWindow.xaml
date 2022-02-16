@@ -13,7 +13,7 @@
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         Foreground="#FF2878FF"
-        Background="#FF0A0A0A"
+        Background="#FF1E1E1E"
         FontSize="20">
 
     <Grid x:Name="MainGrid"
@@ -77,7 +77,8 @@
                              Width="40"
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
-                             Foreground="#FF2878FF"/>
+                             Foreground="#FF2878FF">
+                    </TextBox>
 
                     <TextBlock Text="d"
                                Grid.Row="0"
