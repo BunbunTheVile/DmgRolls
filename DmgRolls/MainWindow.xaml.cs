@@ -3,13 +3,13 @@ using DmgRolls.Models;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 /*
  * As I understand it, this code-behind basically functions as the controller?
  * Well, I'll use it as one, for what it's worth.
  * 
  * TODO:
- *  -calculate on Enter
  *  -update mu and sigma with other field adjustments
  */
 
@@ -231,6 +231,14 @@ namespace DmgRolls
             MuTextBlock.Text = $"μ: {mean:N1}";
             SigmaTextBlock.Text = $"σ: {standardDeviation:N3}";
             ProbabilityTextBlock.Text = $"Probability: {approximation}{probability * 100:N1}%";
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                CalculateButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
         }
     }
 }

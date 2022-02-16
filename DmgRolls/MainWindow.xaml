@@ -14,7 +14,8 @@
         WindowStartupLocation="CenterScreen"
         Foreground="#FF2878FF"
         Background="#FF1E1E1E"
-        FontSize="20">
+        FontSize="20" 
+        KeyDown="Window_KeyDown">
 
     <Grid x:Name="MainGrid"
         Margin="5">
@@ -128,7 +129,7 @@
                            TextAlignment="Right"/>
 
                 <TextBox x:Name="StaticModifierBox"
-                         Text="+5"
+                         Text="+0"
                          Grid.Row="4"
                          Grid.Column="1"
                          Margin="5"
