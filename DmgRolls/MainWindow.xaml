@@ -129,7 +129,6 @@
                            TextAlignment="Right"/>
 
                 <TextBox x:Name="StaticModifierBox"
-                         Text="+0"
                          Grid.Row="4"
                          Grid.Column="1"
                          Margin="5"
@@ -139,7 +138,7 @@
                          BorderBrush="#FF142878"
                          Background="#FF0A1428"
                          Foreground="#FF2878FF" 
-                         LostFocus="StaticModifierBox_LostFocus"/>
+                         TextChanged="StaticModifierBox_TextChanged"/>
 
             </Grid>
         </Border>
@@ -188,7 +187,6 @@
                             Orientation="Horizontal">
                     <TextBlock Text="Lower:"/>
                     <TextBox x:Name="LowerBoundBox"
-                             Text="x"
                              TextAlignment="Center"
                              Width="40"
                              Margin="5 0 15 0"
@@ -199,7 +197,6 @@
                     <TextBlock Text="Upper:"
                                Margin="15 0 5 0"/>
                     <TextBox x:Name="UpperBoundBox" 
-                             Text="x"
                              TextAlignment="Center"
                              Width="40"
                              BorderBrush="#FF142878"

@@ -12,6 +12,7 @@ using System.Windows.Input;
  * 
  * TODO:
  * -add dice rolling functionality that doesn't conflict with calculate
+ * -deal with crash on negative modifier
  */
 
 namespace DmgRolls
@@ -178,6 +179,8 @@ namespace DmgRolls
             }
 
             SetMuAndSigma();
+
+            ProbabilityTextBlock.Text = "Probability: . . .";
         }
 
         [MemberNotNull(nameof(calculator))]
@@ -214,7 +217,7 @@ namespace DmgRolls
             AdjustAndReadInputFields();
         }
 
-        private void StaticModifierBox_LostFocus(object sender, RoutedEventArgs e)
+        private void StaticModifierBox_TextChanged(object sender, RoutedEventArgs e)
         {
             AdjustAndReadInputFields();
         }
@@ -229,7 +232,7 @@ namespace DmgRolls
             AdjustAndReadInputFields();
         }
 
-        public void diceField_LostFocus(object sender, RoutedEventArgs e)
+        public void diceField_TextChanged(object sender, RoutedEventArgs e)
         {
             AdjustAndReadInputFields();
         }
@@ -250,6 +253,11 @@ namespace DmgRolls
             {
                 CalculateButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
+        }
+
+        private void StaticModifierBox_TextInput(object sender, TextCompositionEventArgs e)
+        {
+
         }
     }
 }

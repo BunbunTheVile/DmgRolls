@@ -33,7 +33,7 @@ namespace DmgRolls.Helpers
             diceCountBox.BorderBrush = new SolidColorBrush(borderColour);
             diceCountBox.Foreground = new SolidColorBrush(foregroundColour);
             diceCountBox.Background = new SolidColorBrush(backgroundColour);
-            diceCountBox.LostFocus += this.controller.diceField_LostFocus;
+            diceCountBox.TextChanged += this.controller.diceField_TextChanged;
 
             dTextBlock.Text = "d";
             dTextBlock.Margin = new Thickness(5, 7, 5, 0);
@@ -45,7 +45,7 @@ namespace DmgRolls.Helpers
             diceTypeBox.BorderBrush = new SolidColorBrush(borderColour);
             diceTypeBox.Foreground = new SolidColorBrush(foregroundColour);
             diceTypeBox.Background = new SolidColorBrush(backgroundColour);
-            diceTypeBox.LostFocus += this.controller.diceField_LostFocus;
+            diceTypeBox.TextChanged += this.controller.diceField_TextChanged;
 
             minusButton.Content = "-";
             minusButton.Margin = new Thickness(25, 5, 5, 0);
