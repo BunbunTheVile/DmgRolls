@@ -1,6 +1,7 @@
 ﻿using DmgRolls.Helpers;
 using DmgRolls.Models;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,7 +11,6 @@ using System.Windows.Input;
  * Well, I'll use it as one, for what it's worth.
  * 
  * TODO:
- *  -update mu and sigma with other field adjustments
  */
 
 namespace DmgRolls
@@ -21,11 +21,11 @@ namespace DmgRolls
         private int staticModifier;
         private int lowerBound;
         private int upperBound;
+        private DiceProbabilityModel calculator;
 
         public MainWindow()
         {
             InitializeComponent();
-
             AddDie(2, 6);
             AdjustAndReadInputFields();
         }
@@ -102,6 +102,7 @@ namespace DmgRolls
             return results;
         }
 
+        [MemberNotNull(nameof(calculator))]
         private void AdjustAndReadInputFields()
         {
             //set the dice counts to 1 if they don't hold a valid number
@@ -172,6 +173,28 @@ namespace DmgRolls
                 upperBound = maxRoll;
                 UpperBoundBox.Text = maxRoll.ToString();
             }
+
+            SetMuAndSigma();
+        }
+
+        [MemberNotNull(nameof(calculator))]
+        private void SetMuAndSigma()
+        {
+            var dice = new List<int>();
+            foreach (DiceRow row in diceRows)
+            {
+                for (int i = 0; i < int.Parse(row.diceCountBox.Text); i++)
+                {
+                    dice.Add(int.Parse(row.diceTypeBox.Text));
+                }
+            }
+
+            this.calculator = new DiceProbabilityModel(dice.ToArray(), this.staticModifier);
+            double mean = calculator.Mean;
+            double standardDeviation = calculator.StandardDeviation;
+
+            MuTextBlock.Text = $"μ: {mean:N1}";
+            SigmaTextBlock.Text = $"σ: {standardDeviation:N3}";
         }
 
         public void PlusButton_Click(object sender, RoutedEventArgs e)
@@ -213,23 +236,8 @@ namespace DmgRolls
             //adjust and read all input; initialize probability model; display calculated values
             AdjustAndReadInputFields();
 
-            var dice = new List<int>();
-            foreach(DiceRow row in diceRows)
-            {
-                for (int i = 0; i < int.Parse(row.diceCountBox.Text); i++)
-                {
-                    dice.Add(int.Parse(row.diceTypeBox.Text));
-                }
-            }
-
-            var calculator = new DiceProbabilityModel(dice.ToArray(), this.staticModifier);
-            string approximation = calculator.UseApproximation ? "~" : "";
-            double mean = calculator.Mean;
-            double standardDeviation = calculator.StandardDeviation;
             double probability = calculator.GetProbability(this.lowerBound, this.upperBound);
-
-            MuTextBlock.Text = $"μ: {mean:N1}";
-            SigmaTextBlock.Text = $"σ: {standardDeviation:N3}";
+            string approximation = calculator.UseApproximation ? "~" : "";
             ProbabilityTextBlock.Text = $"Probability: {approximation}{probability * 100:N1}%";
         }
 
