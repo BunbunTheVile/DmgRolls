@@ -127,7 +127,8 @@
                            Margin="5"
                            TextAlignment="Right"/>
 
-                <TextBox Text="+2"
+                <TextBox x:Name="StaticModifierBox"
+                         Text="+5"
                          Grid.Row="4"
                          Grid.Column="1"
                          Margin="5"
@@ -136,7 +137,8 @@
                          Width="50"
                          BorderBrush="#FF142878"
                          Background="#FF0A1428"
-                         Foreground="#FF2878FF"/>
+                         Foreground="#FF2878FF" 
+                         LostFocus="StaticModifierBox_LostFocus"/>
 
             </Grid>
         </Border>
@@ -172,21 +174,25 @@
                 <StackPanel x:Name="BoundsInnerPanel"
                             Orientation="Horizontal">
                     <TextBlock Text="Lower:"/>
-                    <TextBox Text="3"
+                    <TextBox x:Name="LowerBoundBox"
+                             Text="x"
                              TextAlignment="Center"
                              Width="40"
                              Margin="5 0 15 0"
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
-                             Foreground="#FF2878FF"/>
+                             Foreground="#FF2878FF" 
+                             LostFocus="lowerBoundBox_LostFocus"/>
                     <TextBlock Text="Upper:"
                                Margin="15 0 5 0"/>
-                    <TextBox Text="18"
+                    <TextBox x:Name="UpperBoundBox" 
+                             Text="x"
                              TextAlignment="Center"
                              Width="40"
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
-                             Foreground="#FF2878FF"/>
+                             Foreground="#FF2878FF" 
+                             LostFocus="UpperBoundBox_LostFocus"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -198,7 +204,7 @@
             <StackPanel x:Name="ProbAndCalcPanel"
                         HorizontalAlignment="Center"
                         Margin="5">
-                <TextBlock Text="Probability: 100.00%"/>
+                <TextBlock Text="Probability: ..."/>
                 <Button x:Name="CalculateButton"
                         Content="Calculate"
                         BorderThickness="4"
