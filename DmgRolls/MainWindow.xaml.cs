@@ -142,6 +142,8 @@ namespace DmgRolls
                 minRoll += int.Parse(row.diceCountBox.Text);
                 maxRoll += int.Parse(row.diceCountBox.Text) * int.Parse(row.diceTypeBox.Text);
             }
+            MinRollTextBlock.Text = $"Min: {minRoll}";
+            MaxRollTextBlock.Text = $"Max: {maxRoll}";
 
             if (!validities["lowerBound"])
             {

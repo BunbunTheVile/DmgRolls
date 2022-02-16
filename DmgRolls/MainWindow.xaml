@@ -148,15 +148,27 @@
                 BorderBrush="#FF2878FF"
                 BorderThickness="1"
                 Grid.Row="1">
-            <StackPanel x:Name="StatisticsPanel"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <TextBlock x:Name="MuTextBlock"
-                           Text="μ: ..."
-                           Margin="5 5 25 5"/>
-                <TextBlock x:Name="SigmaTextBlock"
-                           Text="σ: ..."
-                           Margin="25 5 5 5"/>
+            <StackPanel>
+                <StackPanel x:Name="MinMaxRollPanel"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock x:Name="MinRollTextBlock"
+                               Text="Min: ..."
+                               Margin="5 5 25 5"/>
+                    <TextBlock x:Name="MaxRollTextBlock"
+                               Text="Max: ..."
+                               Margin="25 5 5 5"/>
+                </StackPanel>
+                <StackPanel x:Name="StatisticsPanel"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock x:Name="MuTextBlock"
+                               Text="μ: ..."
+                               Margin="5 5 25 5"/>
+                    <TextBlock x:Name="SigmaTextBlock"
+                               Text="σ: ..."
+                               Margin="25 5 5 5"/>
+                </StackPanel>
             </StackPanel>
         </Border>
 
