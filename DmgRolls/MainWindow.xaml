@@ -61,7 +61,7 @@
                       Grid.Column="1"
                       Margin="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
+                        <!--RowDefinition Height="auto"/-->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -70,7 +70,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Text="3"
+                    <!--TextBox Text="3"
                              Grid.Row="0"
                              Grid.Column="0"
                              TextAlignment="Center"
@@ -95,7 +95,8 @@
                              Background="#FF0A1428"
                              Foreground="#FF2878FF"/>
 
-                    <Button Content="-"
+                    <Button x:Name="MinusButton"
+                            Content="-"
                             Grid.Row="0"
                             Grid.Column="3"
                             Margin="25 0 5 0"
@@ -103,7 +104,7 @@
                             Width="32"
                             BorderBrush="#FF142878"
                             Background="#FF0A1428"
-                            Foreground="#FF2878FF"/>
+                            Foreground="#FF2878FF"/-->
 
                 </Grid>
 
@@ -197,7 +198,8 @@
                         HorizontalAlignment="Center"
                         Margin="5">
                 <TextBlock Text="Probability: 100.00%"/>
-                <Button Content="Calculate"
+                <Button x:Name="CalculateButton"
+                        Content="Calculate"
                         BorderThickness="4"
                         Margin="0 5 0 0"
                         Width="150"

@@ -1,41 +1,54 @@
-﻿using System;
+﻿using DmgRolls.Helpers;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DmgRolls.Models;
 
 /*
- * TODO:
- *  implement ApproximateProbabilityCalculator
- *  implement controller
- *  cleanup Main class file
- *  find a way to implement spinner boxes
+ * As I understand it, this code-behind basically functions as the controller?
+ * Well, I'll use it as one, for what it's worth.
  */
 
 namespace DmgRolls
 {
     public partial class MainWindow : Window
     {
+        public List<DiceRow> diceRows = new List<DiceRow>();
+
         public MainWindow()
         {
             InitializeComponent();
 
-            int[] dice = new int[] { 6, 6, 6, 6, 6, 6};
-            var x = new DiceProbabilityModel(dice, 5);
+            //MessageBox.Show(result.ToString());
 
-            var result = $"{x.GetProbability(30, 30):N3}";
+            AddDie(4, 4);
+            AddDie(3, 6);
 
-            MessageBox.Show(result.ToString());
+        }
+
+        private void AddDie(int diceCount, int diceType)
+        {
+            var rowDefinition = new RowDefinition();
+            rowDefinition.Height = GridLength.Auto;
+            DiceGrid.RowDefinitions.Add(rowDefinition);
+
+            int rowIndex = diceRows.Count;
+            DiceRow newDiceRow = new DiceRow(diceCount, diceType);
+            diceRows.Add(newDiceRow);
+
+            Grid.SetRow(newDiceRow.diceCountBox, rowIndex);
+            Grid.SetRow(newDiceRow.dTextBlock, rowIndex);
+            Grid.SetRow(newDiceRow.diceTypeBox, rowIndex);
+            Grid.SetRow(newDiceRow.minusButton, rowIndex);
+
+            Grid.SetColumn(newDiceRow.diceCountBox, 0);
+            Grid.SetColumn(newDiceRow.dTextBlock, 1);
+            Grid.SetColumn(newDiceRow.diceTypeBox, 2);
+            Grid.SetColumn(newDiceRow.minusButton, 3);
+
+            DiceGrid.Children.Add(newDiceRow.diceCountBox);
+            DiceGrid.Children.Add(newDiceRow.dTextBlock);
+            DiceGrid.Children.Add(newDiceRow.diceTypeBox);
+            DiceGrid.Children.Add(newDiceRow.minusButton);
         }
     }
 }
