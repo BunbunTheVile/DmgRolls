@@ -20,18 +20,7 @@ namespace DmgRolls
 
             AddDie(4, 4);
             AddDie(3, 6);
-            AddDie(4, 6);
-            AddDie(5, 6);
-            AddDie(6, 6);
-            AddDie(7, 6);
 
-            RemoveDie(2);
-
-            AddDie(8, 6);
-
-            RemoveDie(2);
-            AddDie(9, 6);
-            AddDie(10, 6);
 
         }
 
@@ -42,7 +31,7 @@ namespace DmgRolls
             DiceGrid.RowDefinitions.Add(rowDefinition);
 
             int rowIndex = diceRows.Count;
-            DiceRow newDiceRow = new DiceRow(diceCount, diceType);
+            DiceRow newDiceRow = new DiceRow(diceCount, diceType, this);
             diceRows.Add(newDiceRow);
 
             Grid.SetRow(newDiceRow.diceCountBox, rowIndex);
@@ -81,6 +70,18 @@ namespace DmgRolls
             }
 
             diceRows.RemoveAt(rowIndex);
+        }
+
+        public void PlusButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddDie(1, 6);
+        }
+
+        public void MinusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int row = Grid.GetRow(button);
+            RemoveDie(row);
         }
     }
 }

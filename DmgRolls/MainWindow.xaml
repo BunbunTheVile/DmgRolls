@@ -118,7 +118,8 @@
                         HorizontalAlignment="Left"
                         BorderBrush="#FF142878"
                         Background="#FF0A1428"
-                        Foreground="#FF2878FF"/>
+                        Foreground="#FF2878FF" 
+                        Click="PlusButton_Click"/>
 
                 <TextBlock Text="Modifier:"
                            Grid.Row="4"

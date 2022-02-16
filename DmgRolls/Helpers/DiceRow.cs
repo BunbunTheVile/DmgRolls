@@ -15,8 +15,12 @@ namespace DmgRolls.Helpers
         public TextBox diceTypeBox;
         public Button minusButton;
 
-        public DiceRow(int diceCount, int diceType)
+        private MainWindow controller;
+
+        public DiceRow(int diceCount, int diceType, MainWindow controller)
         {
+            this.controller = controller;
+
             this.diceCountBox = new TextBox();
             this.dTextBlock = new TextBlock();
             this.diceTypeBox = new TextBox();
@@ -48,7 +52,7 @@ namespace DmgRolls.Helpers
             minusButton.BorderBrush = new SolidColorBrush(borderColour);
             minusButton.Foreground = new SolidColorBrush(foregroundColour);
             minusButton.Background = new SolidColorBrush(backgroundColour);
-
+            minusButton.Click += this.controller.MinusButton_Click;
         }
     }
 }
