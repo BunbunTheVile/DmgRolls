@@ -18,10 +18,20 @@ namespace DmgRolls
         {
             InitializeComponent();
 
-            //MessageBox.Show(result.ToString());
-
             AddDie(4, 4);
             AddDie(3, 6);
+            AddDie(4, 6);
+            AddDie(5, 6);
+            AddDie(6, 6);
+            AddDie(7, 6);
+
+            RemoveDie(2);
+
+            AddDie(8, 6);
+
+            RemoveDie(2);
+            AddDie(9, 6);
+            AddDie(10, 6);
 
         }
 
@@ -49,6 +59,28 @@ namespace DmgRolls
             DiceGrid.Children.Add(newDiceRow.dTextBlock);
             DiceGrid.Children.Add(newDiceRow.diceTypeBox);
             DiceGrid.Children.Add(newDiceRow.minusButton);
+        }
+
+        private void RemoveDie(int rowIndex)
+        {
+            DiceRow diceRow = diceRows[rowIndex];
+            DiceGrid.Children.Remove(diceRow.diceCountBox);
+            DiceGrid.Children.Remove(diceRow.dTextBlock);
+            DiceGrid.Children.Remove(diceRow.diceTypeBox);
+            DiceGrid.Children.Remove(diceRow.minusButton);
+            DiceGrid.RowDefinitions.RemoveAt(rowIndex);
+
+            // Decrement the row number of any control coming after the removed row
+            for (int i = rowIndex + 1; i < diceRows.Count; i++)
+            {
+                DiceRow currentRow = diceRows[i];
+                Grid.SetRow(currentRow.diceCountBox, i - 1);
+                Grid.SetRow(currentRow.dTextBlock, i - 1);
+                Grid.SetRow(currentRow.diceTypeBox, i - 1);
+                Grid.SetRow(currentRow.minusButton, i - 1);
+            }
+
+            diceRows.RemoveAt(rowIndex);
         }
     }
 }
