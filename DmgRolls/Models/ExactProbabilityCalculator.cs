@@ -14,8 +14,8 @@ namespace DmgRolls.Models
         public double Variance { get; }
         public double StandardDeviation { get; }
 
-        public int[] frequencies;          // absolute frequencies of a every dice roll total
-        public double[] probabilities;     // relative frequencies of every dice roll total
+        public int[] frequencies;          // absolute frequencies of a every dice roll total - modifier not included
+        public double[] probabilities;     // relative frequencies of every dice roll total - modifier not included
         public int possibilities;          // the total amount of possible dice rolls
 
         public ExactProbabilityCalculator(int[] dice, int staticModifier)
@@ -31,8 +31,8 @@ namespace DmgRolls.Models
                 maxRoll += die;
                 possibilities *= die;
             }
-            frequencies = new int[maxRoll + 1];
-            probabilities = new double[maxRoll + 1];
+            frequencies = new int[maxRoll - staticModifier + 1];
+            probabilities = new double[maxRoll - staticModifier + 1];
 
             Mean = (double)staticModifier;
             Variance = 0.0;
@@ -44,7 +44,7 @@ namespace DmgRolls.Models
             StandardDeviation = Math.Sqrt(Variance);
             if (dice.Length > 0)
             {
-                this.initializeFrequencies(currentSum: staticModifier);
+                this.initializeFrequencies();
                 this.initializeProbabilities();
             }
         }
@@ -96,7 +96,7 @@ namespace DmgRolls.Models
             upper = upper > maxRoll ? maxRoll : upper;
 
             double probability = 0;
-            for (int i = lower; i <= upper; i++)
+            for (int i = lower - staticModifier; i <= upper - staticModifier; i++)
             {
                 probability += probabilities[i];
             }

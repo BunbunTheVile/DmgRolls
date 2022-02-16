@@ -134,7 +134,7 @@
                          Margin="5"
                          HorizontalAlignment="Left"
                          TextAlignment="Center"
-                         Width="50"
+                         Width="60"
                          BorderBrush="#FF142878"
                          Background="#FF0A1428"
                          Foreground="#FF2878FF" 
@@ -188,7 +188,7 @@
                     <TextBlock Text="Lower:"/>
                     <TextBox x:Name="LowerBoundBox"
                              TextAlignment="Center"
-                             Width="40"
+                             Width="60"
                              Margin="5 0 15 0"
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
@@ -198,7 +198,7 @@
                                Margin="15 0 5 0"/>
                     <TextBox x:Name="UpperBoundBox" 
                              TextAlignment="Center"
-                             Width="40"
+                             Width="60"
                              BorderBrush="#FF142878"
                              Background="#FF0A1428"
                              Foreground="#FF2878FF" 
